@@ -19,6 +19,10 @@ group = 'com.otr.wuhan.learning'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+ext {
+	springCloudVersion = 'Finchley.RELEASE'
+}
+
 repositories {
     maven { url "http://10.202.129.239:8081/artifactory/otr-maven/" }
     mavenCentral()
@@ -30,4 +34,10 @@ dependencies {
 	compile('com.otr.wuhan.learning:common:1.0.0')
 	compile('org.springframework.boot:spring-boot-starter-web')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
 }
