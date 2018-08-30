@@ -1,7 +1,7 @@
 package com.otr.wuhan.learning.userservice.controller;
 
-import com.otr.wuhan.learning.common.UserDTO;
 import com.otr.wuhan.learning.userservice.dto.GoodDTO;
+import com.otr.wuhan.learning.userservice.dto.UserDTO;
 import com.otr.wuhan.learning.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
