@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: mst-user-service
   cloud:
     consul:
       enabled: true
@@ -12,5 +14,36 @@ spring:
         service-name: mst-user-service
         instance-id: ${spring.application.name}:${server.port}
         prefer-ip-address: true
-  application:
-    name: mst-user-service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - info
+          - health
+          - hystrix.stream
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  shareSecurityContext: true
+  threadpool:
+    default:
+      coreSize: 10
+      maxQueueSize: 200
+      queueSizeRejectionThreshold: 20
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+#          strategy: SEMAPHORE
+
+ribbon:
+  ReadTimeout: 2000
+  MaxAutoRetries: 0
+  MaxAutoRetriesNextServer: 1

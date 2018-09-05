@@ -1,6 +1,6 @@
 package com.otr.wuhan.learning.userservice.dto;
 
-public class GoodDTO {
+public class GoodsDTO {
     private long id;
 
     public long getId() {
