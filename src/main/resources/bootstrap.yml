@@ -29,19 +29,25 @@ feign:
     enabled: true
 
 hystrix:
-  shareSecurityContext: true
-  threadpool:
-    default:
-      coreSize: 10
-      maxQueueSize: 200
-      queueSizeRejectionThreshold: 20
   command:
     default:
       execution:
         isolation:
+          strategy: THREAD
           thread:
-            timeoutInMilliseconds: 5000
-#          strategy: SEMAPHORE
+            timeoutInMilliseconds: 3000
+      circuitBreaker:
+        requestVolumeThreshold: 20
+        errorThresholdPercentage: 50
+        sleepWindowInMilliseconds: 5000
+      metrics:
+        rollingStats:
+          timeInMilliseconds: 10000
+  threadpool:
+    default:
+      coreSize: 10
+      maxQueueSize: 200
+      queueSizeRejectionThreshold: 5
 
 ribbon:
   ReadTimeout: 2000
